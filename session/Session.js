@@ -9,11 +9,15 @@ class Session{
     this._data   = {};
   }
 
-  Session.prototype.getId(){
+  getId(){
     return this._id;
   };
 
-  Session.prototype.set = function (key, value) {
+  get(key, value) {
+    return this._data[key];
+  };
+
+  set(key, value) {
       if (typeof key === 'string' || key instanceof String)) {
           this._data[key] = value;
       } else if ((key === 'object') && !value) {
@@ -25,22 +29,21 @@ class Session{
       }
   };
 
-  Session.prototype.get = function (key, value) {
-    return this._data[key];
-  };
-
-  Session.prototype.invalidate = function () {
+  invalidate() {
     this._data = {};
     this._store.remove(this._id);
     this._id = undefined;
   };
-  Session.prototype.isLoggedIn = function () {
+
+  isLoggedIn() {
     return !!this._data.loggedIn;
   };
-  Session.prototype.getStatus = function () {
+
+  getStatus() {
     return this.get("status");
   };
-  Session.prototype.setStatus = function (status) {
+
+  setStatus(status) {
     this.set("status", status);
   };
 
