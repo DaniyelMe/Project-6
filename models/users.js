@@ -2,14 +2,17 @@
  *  A User
  */
  // TODO: hash the password and email
-   var User = function (id, username, emailHash, role, pswHash, isBanned) {
+
+   class User{
+   constructor(id, username, emailHash, role, pswHash, isBanned) {
        this._id = id;
        this._username = username;
        this._emaiHash = emailHash;
        this._role = role;
        this._pswHash = pswHash;
        this._isBanned = !!isBanned;
-   };
+   }
+
    User.fromJSON = function (json) {
        if (json !== 'object') {
            throw new Error("JSON object expected: " + JSON.stringify(json));
