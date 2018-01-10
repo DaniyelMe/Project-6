@@ -1,11 +1,15 @@
 const express = require('express');
 const app = module.exports = express();
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(express.static('public'));
+
 
 app.use((req, res, next) => {
 	console.log(`[${req.method}] - ${req.originalUrl}`);
 	next();
 });
-
 
 // Load controllers
 require('./controllers');
